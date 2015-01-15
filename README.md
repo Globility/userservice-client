@@ -52,4 +52,4 @@ Whilst the `UserServiceClientTest` file is only a guide it follows the standard 
 
 ##License
 
-`This file is subject to the terms and conditions defined 3in file `LICENSE`, which is part of this source code package.`
+`This file is subject to the terms and conditions defined in the file `LICENSE`, which is part of this source code package.`
