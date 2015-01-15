@@ -1,0 +1,102 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>net.gltd.gtms.client</groupId>
+	<artifactId>userservice</artifactId>
+	<packaging>jar</packaging>
+	<name>User Service Client</name>
+	<version>1.0.0-SNAPSHOT</version>
+	<organization>
+		<name>Globility</name>
+	</organization>
+
+	<distributionManagement>
+		<!-- Publish the versioned releases here -->
+		<repository>
+			<id>nexus-releases</id>
+			<name>Nexus Releases</name>
+			<url>http://repo.gltd.net/nexus/content/repositories/releases</url>
+		</repository>
+		<!-- Publish the versioned releases here -->
+		<snapshotRepository>
+			<id>nexus-snapshots</id>
+			<name>Nexus Snapshots</name>
+			<url>http://repo.gltd.net/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<!-- download artifacts from this repo -->
+	<repositories>
+		<repository>
+			<id>nexus</id>
+			<name>GLTD Public Repository</name>
+			<url>http://repo.gltd.net/nexus/content/groups/public</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	<!-- download plugins from this repo -->
+	<pluginRepositories>
+		<pluginRepository>
+			<id>nexus</id>
+			<name>GLTD Plugin Repository</name>
+			<url>http://repo.gltd.net/nexus/content/groups/public</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<dependencies>
+		<!-- Test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- GTMS -->
+		<dependency>
+			<groupId>net.gltd.gtms</groupId>
+			<artifactId>gtmsutil</artifactId>
+			<version>1.2.0-SNAPSHOT</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.igniterealtime.openfire</groupId>
+			<artifactId>openfire</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Log -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-client</artifactId>
+			<version>1.18</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<finalName>${project.artifactId}</finalName>
+	</build>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+	</properties>
+	<description>User Service Client Library</description>
+</project>

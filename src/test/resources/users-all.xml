@@ -1,0 +1,19 @@
+<users>
+	<user>
+		<username>admin</username>
+		<name>Administrator</name>
+		<email>admin@example.com</email>
+		<properties />
+	</user>
+	<user>
+		<username>betty.bidder</username>
+		<name>Betty Bidder</name>
+		<properties />
+	</user>
+	<user>
+		<username>leon</username>
+		<name>Leon Leon</name>
+		<email>leon@gltd.net</email>
+		<properties />
+	</user>
+</users>
