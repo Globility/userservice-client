@@ -2,7 +2,6 @@ package net.gltd.gtms.client.userservice;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.io.StringWriter;
@@ -29,6 +28,14 @@ import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
+/**
+ * The UserServiceClient communicates with the Openfire UserService plugin's REST interface.
+ * 
+ * It is able to handle user based authentication and automatically marshals/unmarshals the user collection returned.
+ * 
+ * @author leon
+ *
+ */
 public class UserServiceClient {
 	private static final Logger logger = Logger.getLogger(UserServiceClient.class);
 
@@ -70,6 +77,13 @@ public class UserServiceClient {
 		return url;
 	}
 
+	/**
+	 * Obtain a list of all users on the Openfire system.
+	 * 
+	 * @return a list of all users.
+	 * @throws UserServiceException
+	 *             if an HTTP error is received.
+	 */
 	public Users getUsers() throws UserServiceException {
 		Users users = new Users();
 		try {
@@ -91,6 +105,9 @@ public class UserServiceClient {
 		return users;
 	}
 
+	/**
+	 * Destroys any client resources.
+	 */
 	public void destroy() {
 		logger.debug("DESTROY");
 		if (this.client != null) {
@@ -98,7 +115,7 @@ public class UserServiceClient {
 		}
 	}
 
-	public void initializeJaxb(Class<?>... context) throws JAXBException, XMLStreamException {
+	private void initializeJaxb(Class<?>... context) throws JAXBException, XMLStreamException {
 		JAXBContext jaxbContext = JAXBContext.newInstance(context);
 		unmarshaller = jaxbContext.createUnmarshaller();
 		marshaller = jaxbContext.createMarshaller();
@@ -117,12 +134,12 @@ public class UserServiceClient {
 		return xmlEventReader;
 	}
 
-	protected <T> T unmarshal(String xml, Class<T> type) throws XMLStreamException, JAXBException {
+	private <T> T unmarshal(String xml, Class<T> type) throws XMLStreamException, JAXBException {
 		XMLEventReader xmlEventReader = getStream(xml);
 		return unmarshaller.unmarshal(xmlEventReader, type).getValue();
 	}
 
-	protected String marshal(Object object) throws XMLStreamException, JAXBException {
+	private String marshal(Object object) throws XMLStreamException, JAXBException {
 		Writer writer = new StringWriter();
 
 		XMLStreamWriter xmlStreamWriter = XMLOutputFactory.newFactory().createXMLStreamWriter(writer);
